@@ -1,39 +1,22 @@
+// src/App.js
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
+import CartPage from "./components/CartPage";
 
-import { AppProvider } from "./context/AppContext";
-import CartValue from "./components/CartValue";
-import ExpenseList from "./components/ExpenseList";
-import ItemSelected from "./components/ItemSelected";
-import Location from "./components/Location";
-
-const App = () => {
+function App() {
   return (
-    <AppProvider>
-      <div className="container">
-        <h1 className="mt-3">Shopping App</h1>
-        <div className="row mt-3">
-          <div className="col-sm">
-            <CartValue />
-          </div>
-          <div className="col-sm">
-            <Location />
-          </div>
-        </div>
-        <h3 className="mt-3">Shopping Cart</h3>
-        <div className="row ">
-          <div className="col-sm">
-            <ExpenseList />
-          </div>
-        </div>
-        <h3 className="mt-3">Add Items</h3>
-        <div className="row mt-3">
-          <div className="col-sm">
-            <ItemSelected />
-          </div>
-        </div>
+    <Router>
+      <Header />
+      <div style={{ maxWidth: 1100, margin: "24px auto", padding: 16 }}>
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
       </div>
-    </AppProvider>
+    </Router>
   );
-};
+}
+
 export default App;
